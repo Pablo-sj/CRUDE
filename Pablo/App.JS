@@ -1,6 +1,6 @@
 //eventos Dom
 document
-.getElementById("formulario-producto")
+.getElementById("producto-formulario")
 .addEventListener("submit",function(evento){
  //evaluar el comportamiento del formulario
  evento.preventDefault();// para fuardar sin refrescar en la pagina 
@@ -90,6 +90,16 @@ resetForm(){
                 const contenido=document.querySelector(".container");
                 const app= document.querySelector("#App");
                 //Insertar mensaje en el interfaz de usuario
+               container.insertBefore(div,app);
+               // remover el mensaje luego de 3 segundos
+
+               setTimeout(function(){
+                   document.querySelector(".alert").remove();
+
+               }, 3000);
+
+
+               
 
 
             }
