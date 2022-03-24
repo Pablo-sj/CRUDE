@@ -1,106 +1,113 @@
-//eventos Dom
 document
 .getElementById("producto-formulario")
-.addEventListener("submit",function(evento){
- //evaluar el comportamiento del formulario
- evento.preventDefault();// para fuardar sin refrescar en la pagina 
- //obtener  los valores del formulario
- const nombre = document.getElementById("nombre").value,
- precio = document.getElementById("precio").value,
- año = document.getElementById("año").value;
- //crear un nuevo  objeto "producto"
+.addEventListener("submit", function(evento)
+{
+    evento.preventDefault();
 
- const product = new product(nombre,precio,año)
- // crear un nuevo usuario de interfaz
- const ui =  new UI();
- //input de validacion de usuario
- if(nombre=== "" || precio === "" || año === ""){
-    ui.showMessage("por favor inserte datos");
+    //Obtener los valores del formulario
+    const nombre= document.getElementById("nombre").value,
+          precio= document.getElementById("precio").value,
+          año= document.getElementById("año").value;
 
- }
- // guardar producto
-
- ui.addProducto(producto);
- ui.showMessage("Producto agregado");
- ui.resetForm();
+    //Crear un nuevo objeto (Es para ingresar productos)
+    const producto = new Producto (nombre, precio, año);
+    
+    //Crear un nuevo usuario de interfaz
+    const ui = new UI();
 
 
+    //Input para la validación de los datos
+    if (nombre === " " || precio === " " || año === " " )
+    {
+        ui.showMessage("Por favor insertar datos");  
+    }
+
+    //Guardar datos
+    ui.addProduct(producto),
+    ui.showMessage("Producto Agregado"); 
+    ui.resetFrom();
+  
 });
- 
-document.getElementById("producto-lista").addEventListener("click",(e)=>
 
-{ 
-    const ui  = new UI();
-    ui.deleteProducto(e.target);
-    e.preventDefault();
+document.getElementById("producto-lista").addEventListener("click", (evento) =>{
+     const ui = new UI();
+     ui.deleteProducto(evento.target);
+     e.preventDefault();
+});
 
 
-}
-);
-//clase producto
+//Clase Producto
 
-class Producto{
-    constructor(nombre,precio,año){
+class Producto
+{
+    constructor(nombre, precio, año)
+    {
         this.nombre = nombre;
-        this.precio=precio;
-        this.año=año;
-
+        this.precio = precio;
+        this.año = año;
     }
 }
-//clase usuario interfaz
-class UI{
-    addProducto(producto){
-        const productoLista = document.getElementById("producto-lista");
-        const elemento = document.createElement("div");
-        elemento.innerHTML = ` 
-        <div class="tarjeta texto margen4">
-    <div class="tarjeta-body">
-        <strong>producto</strong> : ${producto.nombre}-
-        <strong>precio</strong> : ${producto.precio}-
-        <strong>año</strong> : ${producto.año}-
-        <a href="#" class="btn btn error" name="eliminar">Eliminar</a>
-
-    </div>
-</div>
-
-`;  
-
-productoLista.appendChild(Element);// appendchild = objeto hijo
-   }
-//Resetear valores del formulario
-resetForm(){
-    document.getElementById("formulario-producto").reset();
-
-            }
-            deleteProducto(elemento){
 
 
-                if(elemento.nombre === "eliminar"){
-                    elemento.parentElement.parentElement.remove();
-                    this.showMessage("El producto se a eliminado")
-                }
-            }
-            showMessage(mesaje,cssClass){
+//Clase Usuario interfaz
 
-                const div = document.createElement("div");
-                div.className = `alert alert-${cssClass}`;
-                div.appendChild(document.createTextNode(mesaje));
-                //mostrar el dom
-                
-                const contenido=document.querySelector(".container");
-                const app= document.querySelector("#App");
-                //Insertar mensaje en el interfaz de usuario
-               container.insertBefore(div,app);
-               // remover el mensaje luego de 3 segundos
+class UI
+{
+  addProduct(producto)
+  {
+      const productoLista = document.getElementById("producto-lista");
+      const elemento = document.createElement("div");
+      elemento.innerHTML=`
+      <div class="tarjeta texto margen4" id="info" style="margin-left: 30%;">
+            <div class="tarjeta-body" style=""background-color:gray;>
+            <br>
+            <strong style="color:white;"> PRODUCTO </strong> :  ${producto.nombre} -
+            <strong style="color:white;"> PRECIO </strong> :  ${producto.precio} -
+            <strong style="color:white;> AÑO </strong> :  ${producto.año} - <br><br>
+            <a href="" class="btn btn-secondary" id="btneli" name="eliminar"style="margin-left: 10%; " > Eliminar  </a> 
+            </div>
+            </div>
+            `;
+            window.alert("Perro agregado");
 
-               setTimeout(function(){
-                   document.querySelector(".alert").remove();
+productoLista.appendChild(elemento); //appendChild es un elemento fijo
+}
+//resetear datos de formulario
+resetFrom()
+{
+document.getElementById("producto-formulario").reset();
+}
 
-               }, 3000);
+deleteProducto(elemento)
+{
+    if(elemento.nombre === "eliminar")
+    {
+        this.showMessage("El Producto se ha Eliminado");
+        elemento.parentElement.parentElement.remove();
+       
+    }
+}
+
+showMessage(mensaje, cssClass)
+{
+  const div = document.createElement("div");
+  div.className = `alert alert-${cssClass}`;
+  div.appendChild(document.createTextNode(mensaje));
 
 
-               
 
+//Mostrar en el DOM
+const contenido = document.querySelector(".container")
+const app = document.querySelector("#App")
+    //Insertar mensaje en el interfaz usuario
+    container.insertBefore(div, app);
 
-            }
+    //Remover el mensaje luego de tres segundos
+
+    setTimeout(function ()
+    {
+        document.querySelector(".alert").remove();
+    }, 3000);
+
+}
 }
