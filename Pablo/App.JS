@@ -59,11 +59,11 @@ class UI
       const elemento = document.createElement("div");
       elemento.innerHTML=`
       <div class="tarjeta texto margen4" id="info" style="margin-left: 30%;">
-            <div class="tarjeta-body" style=""background-color:gray;>
+            <div class="tarjeta-body" >
             <br>
-            <strong style="color:white;"> PRODUCTO </strong> :  ${producto.nombre} -
-            <strong style="color:white;"> PRECIO </strong> :  ${producto.precio} -
-            <strong style="color:white;> AÑO </strong> :  ${producto.año} - <br><br>
+            <strong style="color:black;"> PRODUCTO </strong> :  ${producto.nombre} -<br>
+            <strong style="color:black;"> PRECIO </strong> :  ${producto.precio} -<br>
+            <strong style="color:black;"> AÑO </strong> :  ${producto.año} - <br><br>
             <a href="" class="btn btn-secondary" id="btneli" name="eliminar"style="margin-left: 10%; " > Eliminar  </a> 
             </div>
             </div>
